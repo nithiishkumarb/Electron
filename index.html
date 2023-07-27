@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Electron Webview Example</title>
+</head>
+<body>
+  <!-- Webview to display a web page -->
+  <webview src="https://ts.netcon.in/" style="width: 100%; height: 100vh;"></webview>
+
+  <!-- Script to pass credentials to the web page -->
+  <script>
+    const webview = document.querySelector('webview');
+    const credentials = {
+      username: 'nithishkumar.b@netcon.co.in',
+      password: 'Bike@047'
+    };
+    webview.addEventListener('dom-ready', () => {
+      webview.executeJavaScript(`
+
+        // Code to handle credentials on the web page
+
+        const credentials = ${JSON.stringify(credentials)};
+        console.log('Credentials:', credentials);
+
+        // Add your logic here to use the credentials on the web page
+        // For example, autofill a login form on the web page
+
+        document.getElementById('un').value = credentials.username;
+        document.getElementById('pw').value = credentials.password;
+        
+        // Then submit the form programmatically
+        <!-- document.forms[0].submit(); -->
+      `);
+    });
+  </script>
+</body>
+</html>
